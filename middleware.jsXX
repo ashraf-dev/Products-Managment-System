@@ -1,0 +1,29 @@
+import { NextResponse } from "next/server";
+import jwt from "jsonwebtoken";
+
+export function middleware(request) {
+  const token = request.cookies.get("token");
+
+  if (!token) {
+  return NextResponse.redirect(
+    new URL("/login", request.url)
+  );
+}
+
+try {
+  jwt.verify(token.value, process.env.JWT_SECRET);
+    console.log("JWT ERROR:", "succsefully");
+  return NextResponse.next();
+} catch (error) {
+     console.log("JWT ERROR:", error.message);
+  return NextResponse.redirect(
+  
+    new URL("/login", request.url)
+  );
+}
+
+}
+//المسارات اللي تريد تحميها
+export const config = {
+  matcher: ["/dashboard/:path*"],
+};
