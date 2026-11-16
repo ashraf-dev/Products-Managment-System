@@ -56,7 +56,7 @@ export default function LoginPage() {
         className="bg-white p-6 rounded shadow w-96"
       >
         <h1 className="text-2xl font-bold mb-4">
-          Login
+          Login me
         </h1>
 
         <input
